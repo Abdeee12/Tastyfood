@@ -27,41 +27,49 @@
   </section>
 
   <!-- ======= BERITA UTAMA ======= -->
+  @if($beritaUtama)
   <section class="berita-utama container">
     <div class="berita-box">
       <div class="image">
-        <img src="{{ asset('ASET/eiliv-aceron-ZuIDLSz3XLg-unsplash.jpg') }}" alt="Berita Utama">
+        @if($beritaUtama->gambar)
+          <img src="{{ asset('storage/' . $beritaUtama->gambar) }}" alt="{{ $beritaUtama->judul }}">
+        @else
+          <img src="{{ asset('ASET/default.jpg') }}" alt="Default">
+        @endif
       </div>
       <div class="text">
-        <h2>APA SAJA MAKANAN KHAS<br>NUSANTARA?</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare, augue eu rutrum commodo, dui diam convallis arcu.</p>
-        <p>Nullam vitae dignissim neque, vel luctus ex. Fusce sit amet viverra ante.</p>
+        <h2>{{ strtoupper($beritaUtama->judul) }}</h2>
+        <p>{{ Str::limit($beritaUtama->deskripsi, 250) }}</p>
         <a href="#" class="btn-black">BACA SELENGKAPNYA</a>
       </div>
     </div>
   </section>
+  @endif
 
   <!-- ======= BERITA LAINNYA ======= -->
   <section class="berita-lainnya container">
     <h3>BERITA LAINNYA</h3>
     <div class="berita-grid">
-
-      @foreach(range(1, 8) as $i)
+      @forelse($beritaLainnya as $berita)
       <div class="berita-card">
-        <img src="{{ asset('ASET/'.($i % 4 == 1 ? 'sanket-shah-SVA7TyHxojY-unsplash.jpg' : ($i % 4 == 2 ? 'sebastian-coman-photography-eBmyH7oO5wY-unsplash.jpg' : ($i % 4 == 3 ? 'jimmy-dean-Jvw3pxgeiZw-unsplash.jpg' : 'luisa-brimble-HvXEbkcXjSk-unsplash.jpg')))) }}" alt="Gambar Berita {{ $i }}">
-        <h4>LOREM IPSUM</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare, augue eu rutrum commodo.</p>
+        @if($berita->gambar)
+          <img src="{{ asset('storage/' . $berita->gambar) }}" alt="{{ $berita->judul }}">
+        @else
+          <img src="{{ asset('ASET/default.jpg') }}" alt="Default">
+        @endif
+        <h4>{{ $berita->judul }}</h4>
+        <p>{{ Str::limit($berita->deskripsi, 100) }}</p>
         <a href="#">Baca selengkapnya</a>
       </div>
-      @endforeach
-
+      @empty
+        <p>Tidak ada berita lain untuk ditampilkan.</p>
+      @endforelse
     </div>
   </section>
 
   <!-- ======= FOOTER ======= -->
   <footer class="footer">
     <div class="footer-container container">
-      
       <div class="footer-col brand">
         <h3>Tasty Food</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
@@ -101,7 +109,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>Copyright ©2023 All rights reserved</p>
+      <p>Copyright ©2025 All rights reserved</p>
     </div>
   </footer>
 

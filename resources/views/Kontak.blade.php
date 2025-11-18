@@ -38,24 +38,26 @@
         </form>
     </section>
 
-    <!-- INFO KONTAK -->
-    <section class="kontak-info">
-        <div class="info-item">
-            <img src="{{ asset('ASET/Group 66.png') }}" alt="Email">
-            <h4>EMAIL</h4>
-            <p>tastyfood@gmail.com</p>
-        </div>
-        <div class="info-item">
-            <img src="{{ asset('ASET/Group 67.png') }}" alt="Phone">
-            <h4>PHONE</h4>
-            <p>+62 852 3456 7890</p>
-        </div>
-        <div class="info-item">
-            <img src="{{ asset('ASET/Group 68.png') }}" alt="Location">
-            <h4>LOCATION</h4>
-            <p>Kota Bandung, Jawa Barat</p>
-        </div>
-    </section>
+<section class="kontak-info">
+    <div class="info-item">
+        <img src="{{ asset('ASET/Group 66.png') }}" alt="Email">
+        <h4>EMAIL</h4>
+        <p>{{ $kontak->email ?? 'Belum diatur' }}</p>
+    </div>
+    <div class="info-item">
+        <img src="{{ asset('ASET/Group 67.png') }}" alt="Phone">
+        <h4>PHONE</h4>
+        <p>{{ $kontak->telepon ?? 'Belum diatur' }}</p>
+    </div>
+    <div class="info-item">
+        <img src="{{ asset('ASET/Group 68.png') }}" alt="Location">
+        <h4>LOCATION</h4>
+        <p>{{ $kontak->alamat ?? 'Belum diatur' }}</p>
+    </div>
+</section>
+
+
+
 
 </body>
 </html>
